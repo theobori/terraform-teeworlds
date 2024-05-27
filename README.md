@@ -43,4 +43,4 @@ sv_map ctf1
 sv_gametype ctf
 ```
 
-Now you can build and run the Go application, check the `-h` flag if needed.
+Now you can build and run the Go application, check the `-h` or `--help` flag if needed.
