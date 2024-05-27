@@ -30,14 +30,12 @@ func main() {
 
 	// Connect to the econ server
 	if err := econ.Connect(); err != nil {
-		log.Println(err)
-		return
+		log.Fatalln(err)
 	}
 
 	// Authenticate to the econ server
 	if _, err := econ.Authenticate(); err != nil {
-		log.Println(err)
-		return
+		log.Fatalln(err)
 	}
 
 	t := command.NewTerraform(*dir)
@@ -58,8 +56,7 @@ func main() {
 
 	// Register the event
 	if err := econ.EventManager.Register(&capture); err != nil {
-		log.Println(err)
-		return
+		log.Fatalln(err)
 	}
 
 	address := fmt.Sprintf("%s:%d", *host, *port)
