@@ -9,7 +9,7 @@ Entertaining Terraform chaos engineering, destroy resource by capturing Teeworld
 For the build, you only need the following requirements:
 
 - [Go](https://golang.org/doc/install) 1.22.3
-
+- [Terraform](https://developer.hashicorp.com/terraform/install?product_intent=terraform)
 
 Next to the Go application you could need the following requirements:
 - [Teeworlds server](https://www.teeworlds.com/?page=downloads&id=14786) 0.7
