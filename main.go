@@ -15,6 +15,8 @@ func main() {
 	port := flag.Uint("port", 7000, "Econ server port")
 	password := flag.String("password", "hello_world", "Econ server password")
 	dir := flag.String("dir", ".", "Terraform directory")
+	verbose := flag.Bool("v", false, "Verbose")
+	broadcast := flag.Bool("broadcast", false, "In-game broadcast the destroyed Terraform resource name")
 
 	flag.Parse()
 
@@ -45,9 +47,19 @@ func main() {
 		Name:  "flag_captured",
 		Regex: `\[game\]: flag_capture`,
 		Func: func(econ *twecon.Econ, eventPayload string) any {
-			err := t.DestroyRandom()
+			resourceName, err := t.DestroyRandom()
 			if err != nil {
 				return nil
+			}
+
+			msg := fmt.Sprintf("Destroyed %s", resourceName)
+			
+			if *verbose {
+				log.Println(msg)
+			}
+
+			if *broadcast {
+				_ = econ.Send("broadcast " + msg + " !")
 			}
 
 			return nil

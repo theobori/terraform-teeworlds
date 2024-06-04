@@ -80,19 +80,19 @@ func (t *Terraform) Destroy(name string) error {
 }
 
 // Destroy a random resource
-func (t *Terraform) DestroyRandom() error {
+func (t *Terraform) DestroyRandom() (string, error) {
 	r, err := t.Resources()
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	size := len(r)
 	if size == 0 {
-		return fmt.Errorf("no resources availables")
+		return "", fmt.Errorf("no resources availables")
 	}
 
 	index := rand.Intn(len(r))
 	name := r[index]
 
-	return t.Destroy(name)
+	return name, t.Destroy(name)
 }

@@ -3,3 +3,9 @@ variable "base_path" {
   type        = string
   default     = "/tmp"
 }
+
+variable "files_amount" {
+  description = "Amount of created local files"
+  type        = number
+  default     = 5
+}
